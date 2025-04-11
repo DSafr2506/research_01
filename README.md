@@ -37,9 +37,9 @@
 
 
 ### Архитектуры
--MLP-Mixer (современная MLP-архитектура)
--ResNet-18 (CNN)
--ViT-Tiny (упрощенный Vision Transformer)
+- MLP-Mixer (современная MLP-архитектура)
+- ResNet-18 (CNN)
+- ViT-Tiny (упрощенный Vision Transformer)
 
 
 
