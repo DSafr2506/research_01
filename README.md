@@ -72,11 +72,7 @@
   <img src="img/single_optimizers_loss.png" width="600"/>
 </p>
 
-### 3. Комбинированные оптимизаторы:
 
-<p align="center">
-  <img src="img/combined_optimizers_loss.png" width="600"/>
-</p>
 
 ---
 
