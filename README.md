@@ -1,51 +1,109 @@
-# Изучение влияния различных функций активации и оптимизаторов на сходимость нейросетей при решении задачи классификации изображений на 200 классов
+# Исследование функций активации и оптимизаторов на Tiny ImageNet
 
-## Задача 
-Классификация изображений на 200 классов
+##  Описание проекта
 
+Целью данного проекта является изучение влияния различных **функций активации** и **оптимизаторов** на **сходимость нейросетей** при классификации изображений. В качестве эталонного датасета использован [Tiny ImageNet](https://www.kaggle.com/datasets/akash2sharma/tiny-imagenet), включающий 200 категорий изображений размером 64×64.
 
+---
 
-### Датасет 
-- TinyImageNet-200 (уменьшенная версия ImageNet с 200 классами)
+##  Используемая архитектура нейросети
 
-### используемые функции активации
+- **Вход**: 64×64×3 изображения  
+- **Скрытый слой**: 512 нейронов  
+- **Выход**: 200 классов  
+- **Функция потерь**: `CrossEntropy`  
+- **Batch size**: 64  
+- **Эпох**: 10  
+- **Инициализация**: Xavier (Glorot Uniform)
 
+---
 
-### Базовые
-- ReLU
-- Swish
-- GELU
-### Адаптивные
-- PAReLU
-- Dynamic Swish
-- Adaptive GELU
-### Новые функции 
-- Mish
-- LiSHT
-- ELU+
-- SmeLU
-- Aria-2
+##  Исследуемые функции активации
 
-### Оптимизаторы
-- SGD
-- Adam
-- AdamW
-- LAMB (для больших batch)
-- RAdam (исправленный Adam)
-- Sophia 
+- `ReLU`  
+- `Swish`  
+- `GELU`  
+- `PAReLU`  
+- `DynamicSwish`  
+- `AdaptiveGELUMish`
 
+### Графики активаций:
 
+<p align="center">
+  <img src="img/activation_relu.png" width="300"/>
+  <img src="img/activation_swish.png" width="300"/>
+  <img src="img/activation_gelu.png" width="300"/>
+</p>
+<p align="center">
+  <img src="img/activation_parelu.png" width="300"/>
+  <img src="img/activation_dynamicswish.png" width="300"/>
+  <img src="img/activation_adaptivegelumish.png" width="300"/>
+</p>
 
-### Архитектуры
-- MLP-Mixer (современная MLP-архитектура)
-- ResNet-18 (CNN)
-- ViT-Tiny (упрощенный Vision Transformer)
+---
 
+##  Использованные оптимизаторы
 
+- `SGD`
+- `Adam`
+- `AdamW`
+- `RAdam`
+- `Sophia`
+- `LAMB`
 
-### Возможные эксперементы для исследования 
-- Обучение на low-resolution (64x64) и high-resolution (384x384)
-- Несбалансированные классы
-- составные активации
-- использование batch разных размеров
+Также протестированы комбинации:  
+- `SGD + Adam`  
+- `AdamW + RAdam`  
+- `SGD + Adam + RAdam`
+
+---
+
+##  Результаты
+
+### 1. Все конфигурации:
+
+<p align="center">
+  <img src="img/all_configs_loss.png" width="600"/>
+</p>
+
+### 2. Только одиночные оптимизаторы:
+
+<p align="center">
+  <img src="img/single_optimizers_loss.png" width="600"/>
+</p>
+
+### 3. Комбинированные оптимизаторы:
+
+<p align="center">
+  <img src="img/combined_optimizers_loss.png" width="600"/>
+</p>
+
+---
+
+##  Лучшие конфигурации
+
+| Активация       | Оптимизатор | Loss @ Epoch 10 | Accuracy @ Epoch 10 | Время (сек) |
+|-----------------|-------------|------------------|----------------------|-------------|
+| Swish           | AdamW       | **0.1557**       | **82.4%**            | 136         |
+| PAReLU          | RAdam       | 0.1660           | 81.1%                | 145         |
+| GELU            | Sophia      | 0.1823           | 79.8%                | 157         |
+
+---
+
+##  Выводы
+
+- **GELU** и **Swish** обеспечивают лучшую сходимость.
+- **Adam**, **RAdam** и **AdamW** — наиболее устойчивые оптимизаторы.
+- Комбинации дают выигрыш в устойчивости, но часто переусложняют обучение.
+- Sophia требует дальнейшей адаптации, а LAMB — хорош для масштабируемости.
+
+---
+
+##  Как запустить
+
+```bash
+pip install -r requirements.txt
+jupyter notebook research_02_with_patterns.ipynb
+```
+
 
