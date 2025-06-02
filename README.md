@@ -27,6 +27,14 @@
 - `DynamicSwish`  
 - `AdaptiveGELUMish`
 
+---
+## Используемые паттерны 
+- Strategy Pattern
+- Factory Pattern
+- Template Method
+
+---
+
 ### Графики активаций:
 
 <p align="center">
