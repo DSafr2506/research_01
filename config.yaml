@@ -1,0 +1,25 @@
+model:
+  type: "cnn"
+  num_classes: 200
+
+optimizer:
+  type: "sophie"
+  learning_rate: 0.001
+  weight_decay: 0.01
+  betas: [0.9, 0.999]
+  eps: 1e-8
+  amsgrad: true
+  momentum: 0.9
+
+training:
+  batch_size: 32
+  num_epochs: 100
+  validation_split: 0.2
+  num_workers: 4
+
+data:
+  root_dir: "tiny-imagenet-200"
+  image_size: 64
+  normalize:
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225] 

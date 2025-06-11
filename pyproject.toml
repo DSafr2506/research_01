@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "neural-optimizer-full"
+version = "0.1.0"
+description = "DL project with Strategy, Factory, and Builder patterns"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+torch = "*"
+torchvision = "*"
+pandas = "*"
+matplotlib = "*"
+seaborn = "*"
+numpy = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
