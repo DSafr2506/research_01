@@ -161,9 +161,5 @@ python main.py
 ## Конфигурация
 
 Основные параметры проекта можно настроить в файле `config.yaml`.
-```bash
-pip install -r requirements.txt
-jupyter notebook research_02_with_patterns.ipynb
-```
 
 
